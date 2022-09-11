@@ -23,18 +23,16 @@ app.use(express.json());
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(express.static(__dirname + "/client/build"));
 
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-// });
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 app.get("/fetchData", async (req, res) => {
-  const { CMC_API, CMC_API_KEY } = process.env;
   const { page } = req.query;
   let limit = 5;
   let skip = page - 1;
   let start = skip * limit + 1;
-  //   console.log({ limit, page, skip, start, CMC_API_KEY, CMC_API });
-
+  const { CMC_API, CMC_API_KEY } = process.env;
   try {
     let response = await axios.get(
       `${CMC_API}/listings/latest?start=${start}&limit=${limit}`,
