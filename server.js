@@ -19,13 +19,6 @@ if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 app.use(express.json());
-// // ONLY WHEN READY TO DEPLOY
-const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use(express.static(__dirname + "/client/build"));
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
 
 app.get("/fetchData", async (req, res) => {
   const { page } = req.query;
@@ -49,6 +42,14 @@ app.get("/fetchData", async (req, res) => {
     return res.status(500).json(error.status);
   }
 });
+// // ONLY WHEN READY TO DEPLOY
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(__dirname + "/client/build"));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
+
 const errorHandler = (error, req, res, next) => {
   res.status(500).json({ error });
 };
