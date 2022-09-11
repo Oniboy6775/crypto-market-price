@@ -38,11 +38,9 @@ app.get("/fetchData", async (req, res) => {
   try {
     let response = await axios.get(
       `${CMC_API}/listings/latest?start=${start}&limit=${limit}`,
-      //   `https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=${start}&limit=${limit}`,
       {
         headers: {
           "X-CMC_PRO_API_KEY": CMC_API_KEY,
-          //   "X-CMC_PRO_API_KEY": "f8daf06a-d60e-48b3-8229-ca2f20a30fc9",
         },
       }
     );
