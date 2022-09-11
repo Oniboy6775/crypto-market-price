@@ -1,45 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useAppContext } from "../context/appContext";
+import Loading from "./Loading";
 import SingleCoin from "./SingleCoin";
 const CoinList = () => {
-  const coinList = [
-    {
-      coin: "eth",
-      price: 1629,
-      change: -10,
-    },
-    {
-      coin: "btc",
-      price: 1629,
-      change: 133,
-    },
-    {
-      coin: "etc",
-      price: 36.443,
-      change: 1244,
-    },
-    {
-      coin: "lunc",
-      price: 0.00443,
-      change: -5,
-    },
-    {
-      coin: "gem",
-      price: 43,
-      change: -0.1,
-    },
-  ];
+  const { isLoading, fetchData, pageNumber, coinList } = useAppContext();
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line
+  }, [pageNumber]);
   return (
     <Wrapper>
-      {coinList.map((e) => (
-        <SingleCoin key={e.coin} {...e} />
-      ))}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          {coinList.map((e, index) => (
+            <SingleCoin key={index} {...e} />
+          ))}
+        </>
+      )}
     </Wrapper>
   );
 };
 
 export default CoinList;
 const Wrapper = styled.section`
+  min-height: 50vh;
+  margin: auto;
   .list {
     line-height: 1;
     display: flex;
