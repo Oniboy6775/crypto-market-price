@@ -9,13 +9,15 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server.js --ignore client",
     "client": "npm start --prefix client",
-    "build-client": "cd client && npm run build"
+    "build-client": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm build-client "
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Oniboy6775/crypto-market-price.git"
   },
-  "author": "",
+  "author": "Oniboy",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Oniboy6775/crypto-market-price/issues"
