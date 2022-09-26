@@ -10,6 +10,18 @@ const Landing = () => {
       <Nav />
       <CoinList />
       <Pagination />
+      <p className="title">
+        {" "}
+        Developed by{" "}
+        <a target="blank" href="http://onisabi-portfolio.netlify.app/">
+          Oniboy.
+        </a>
+        <br />
+        Live API from{" "}
+        <a target="blank" href="https://pro.coinmarketcap.com/">
+          Coin Market Cap
+        </a>
+      </p>
     </Wrapper>
   );
 };

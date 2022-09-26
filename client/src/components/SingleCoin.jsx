@@ -16,7 +16,7 @@ const SingleCoin = ({ symbol, coinName, price, change, priceChanges }) => {
         </div>
         <div className="price">
           <p>${price}</p>
-          <small>N{(price * 700).toFixed(2)}</small>
+          <small>₦{(price * 700).toFixed(2)}</small>
         </div>
       </div>
       <button
