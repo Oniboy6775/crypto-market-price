@@ -28,7 +28,6 @@ const AppProvider = ({ children }) => {
     dispatch({ type: FETCH_DATA_BEGIN });
     try {
       let response = await axios.get(`/fetchData?page=${pageNumber}`);
-      // console.log(response.data);
       let sampleResponse = [
         {
           id: 1027,
@@ -296,7 +295,7 @@ const AppProvider = ({ children }) => {
         },
       ];
       const { data } = response.data;
-      let newArray = sampleResponse.map((eachCoin) => {
+      let newArray = data.map((eachCoin) => {
         const {
           id,
           name,
